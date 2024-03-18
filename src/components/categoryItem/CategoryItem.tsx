@@ -20,17 +20,18 @@ function CategoryItem({ category }: { category: Category }) {
 
   useEffect(() => {
     const fetchSelection = async () => {
-      try {
-        const res = await axios.post<CategorySelectionResponse>("/api/categories/category", category);
-        console.log(res.data.row);
-        setIsSelected(res.data.row !== null);
-      } catch (err) {
-        console.error("Error fetching selection:", err);
-      }
+        try {
+            const res = await axios.post<CategorySelectionResponse>("/api/categories/category", category);
+            console.log(res.data.row);
+            setIsSelected(res.data.row !== null);
+        } catch (err) {
+            console.error("Error fetching selection:", err);
+        }
     };
-  
-    fetchSelection();
-  }, [category.id]);
+
+    fetchSelection().catch(err => console.error("Unhandled promise rejection:", err));
+}, [category.id]);
+
   
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
