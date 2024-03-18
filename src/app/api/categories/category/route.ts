@@ -5,13 +5,18 @@ import { getDataFromToken } from "~/helpers/getDataFromToken";
 
 const prisma = new PrismaClient();
 
+interface Category {
+  id: number; 
+  name: string;
+}
+
 export async function POST(request: NextRequest) {
   try {
     
     
     const userId = getDataFromToken(request);
 
-    const reqBody = await request.json();
+    const reqBody: Category = await request.json();
     const { id  }  = reqBody;
 
     const row = await prisma.categoriesOnUsers.findUnique({
