@@ -24,7 +24,7 @@ export async function POST(request: NextRequest,) {
       message: "Categories found",
       row
     });
-  } catch (error: any) {
+  } catch (error ){
     return NextResponse.json({ error: error.message }, { status: 400 });
   } 
 }
