@@ -7,14 +7,13 @@ interface JwtPayload {
   email: string;
 }
 
-// Use a conditional return type to guarantee a number
 export const getDataFromToken = (request: NextRequest): number => {
   try {
     const token = request.cookies.get("token")?.value;
 
     if (!token) {
-      // Throw an error or handle missing token differently
-      throw new Error("Missing token"); // Or handle it as needed
+      
+      throw new Error("Missing token"); 
     }
 
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!) as JwtPayload;
@@ -22,7 +21,7 @@ export const getDataFromToken = (request: NextRequest): number => {
     return decodedToken.id;
   } catch (error) {
     console.error("Error verifying token:", error);
-    // Throw or handle the error appropriately
-    throw new Error("Invalid token"); // Or handle it as needed
+    
+    throw new Error("Invalid token"); 
   }
 };

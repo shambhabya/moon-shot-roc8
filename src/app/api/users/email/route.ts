@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   
     try {
 
-        const token = req.cookies.get("token")?.value || '';
+        const token = req.cookies.get("token")?.value ?? '';
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!) as JwtPayload;
         const email = decodedToken.email;
 

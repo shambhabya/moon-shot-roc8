@@ -5,7 +5,7 @@ import { getDataFromToken } from "~/helpers/getDataFromToken";
 
 const prisma = new PrismaClient();
 
-export async function POST(request: NextRequest,) {
+export async function POST(request: NextRequest) {
   try {
     
     

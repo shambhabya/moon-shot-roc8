@@ -4,7 +4,7 @@ import { getDataFromToken} from "~/helpers/getDataFromToken";
 
 const prisma = new PrismaClient();
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   try {
     const userId = getDataFromToken(request); 
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       where: { userId_categoryId: { userId, categoryId: id } },
     });
 
-    let row: { categoryId: number , userId: number};
+    let row;
 
     if (existingCategory === null) {
       row = await prisma.categoriesOnUsers.create({
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
     return NextResponse.json({
       message: existingCategory ? "Category unassigned" : "Category assigned",
-      Row: row,
+      row,
     });
   } catch (error) {
     console.error("Error handling category association:", error);
