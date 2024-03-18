@@ -3,9 +3,9 @@ import { PrismaClient } from "@prisma/client";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const prisma = new PrismaClient(); // Initialize Prisma Client
+const prisma = new PrismaClient(); 
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, response: NextResponse) {
   
     try {
       const reqBody = await request.json();
