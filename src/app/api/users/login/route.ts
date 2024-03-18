@@ -5,8 +5,8 @@ import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient(); // Initialize Prisma Client
 
-export async function handler(request: NextRequest) {
-  if (request.method === "POST") {
+export async function POST(request: NextRequest) {
+  
     try {
       const reqBody = await request.json();
       const { email, password } = reqBody;
@@ -45,8 +45,4 @@ export async function handler(request: NextRequest) {
       console.error(error);
       return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
-  } else {
-    // Handle other methods (optional)
-    return NextResponse.next();
-  }
 }
