@@ -39,6 +39,7 @@ const onLogin = async () => {
               type="text"
                placeholder="Enter"
                 className='border border-gray-300 rounded-md h-12 w-full p-4' />
+                <div className='p-1 text-sm text-slate-500'>Test Email - medhisambhabya@gmail.com</div>
           </div>
         </div>
 
@@ -48,6 +49,7 @@ const onLogin = async () => {
             <input onChange={(e) => setUser({...user, password: e.target.value})} 
             id="password" type="password" placeholder="Enter" className='border border-gray-300 rounded-md h-12 w-full p-4' />
           </div>
+          <div className='p-1 text-sm text-slate-500'>Test Password - 123456</div>
         </div>
 
         <button onClick={onLogin}

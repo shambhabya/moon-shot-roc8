@@ -70,6 +70,8 @@ function Page() {
           </div>
         </div>
 
+        <div className='p-1 text-base text-red-400'> Provide your actual email id to recieve the OTP</div>
+
         {!buttonDisabled && <button onClick={onSignup} className='h-14 rounded-md bg-black w-5/6 sm:w-4/6 text-white m-5'>CREATE ACCOUNT</button>}
         <h1>{loading ? "Processing" : ""}</h1>
         <Link href="/login" className='text-base font-medium m-6 mb-10'><span className='text-base font-normal'>Have an Account?</span> LOG IN</Link>
