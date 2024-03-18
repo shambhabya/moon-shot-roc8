@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
 
@@ -19,7 +19,7 @@ const onLogin = async () => {
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
       router.push("/");
-  } catch (error:any) {
+  } catch (error) {
       console.log("Login failed", error.message);
   } 
 }

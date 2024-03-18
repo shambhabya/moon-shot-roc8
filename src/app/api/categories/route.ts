@@ -18,7 +18,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
       categories,
       userId
     });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   } 
 }

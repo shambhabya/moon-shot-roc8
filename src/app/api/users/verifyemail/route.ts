@@ -1,8 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from "next/server";
-import jwt from 'jsonwebtoken';
 import { getDataFromToken } from "../../../../helpers/getDataFromToken"
-import { use } from 'react';
 
 const prisma = new PrismaClient();
 
@@ -56,7 +54,7 @@ export async function POST(req: NextRequest) {
     
 
       
-    } catch (error :any) {
+    } catch (error) {
       console.error(error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }

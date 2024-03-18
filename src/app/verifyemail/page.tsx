@@ -1,18 +1,14 @@
 "use client";
 import React, {useState, useRef, useEffect} from 'react'
-import Link from 'next/link';
-import { NextRequest } from "next/server";
-import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { getDataFromToken } from '~/helpers/getDataFromToken';
 
 let currentOTPIndex: number = 0;
 function page() {
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const [otp, setOtp] = useState(new Array(8).fill(""));
+  const [otp, setOtp] = useState(new Array(8).fill(""));
   const [activeOTPIndex, setActiveOTPIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [verificationError, setVerificationError] = useState("");

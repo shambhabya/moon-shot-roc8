@@ -63,7 +63,7 @@ function HomePage() {
     pageNumbers.push(i);
   }
 
-  const handlePageClick = (pageNumber : any) => {
+  const handlePageClick = (pageNumber) => {
     if (pageNumber > 0 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
     }
