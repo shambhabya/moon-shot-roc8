@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@types/axios": "^0.14.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/eslint": "^8.56.2",
     "@types/jsonwebtoken": "^9.0.6",

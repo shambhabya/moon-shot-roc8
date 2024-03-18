@@ -50,7 +50,10 @@ export const sendEmail = async ({ email, userId }: SendEmailProps) => {
 
     return 'OTP email sent successfully';
   } catch (error) {
-    console.error('Error sending OTP email:', error); 
-    throw new Error('Failed to send OTP email'); 
+    if (typeof error === 'string') {
+      console.error("String error:", error); // Handle string errors
+    }  else {
+      console.error("Unexpected error:", error); // Handle other errors generically
+    }
   }
 };
