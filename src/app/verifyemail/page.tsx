@@ -15,7 +15,7 @@ function Page() {
 
   const router = useRouter();
 
-  const [otp, setOtp] = useState(new Array(8).fill(""));
+  const [otp, setOtp] = useState<string[]>(new Array(8).fill([""]));
   const [activeOTPIndex, setActiveOTPIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [verificationError, setVerificationError] = useState("");
@@ -65,20 +65,22 @@ const onVerify = async ()=>{
 
     }
 }
-const checkVerified = async ()=>{
 
-  try{
-  const {data}: { data: { user: user } } = await axios.get("/api/users/isverified");
-  
-  setEmail(data.user.email.substring(0,5)+'******');
-  console.log(data.user);
-  if(data.user.isVerified) router.push("/");
-  }catch(err){
-    console.error('Error fetching user data:', err);
-  }
-}
 
 useEffect(()=>{
+
+  const checkVerified = async ()=>{
+
+    try{
+    const {data}: { data: { user: user } } = await axios.get("/api/users/isverified");
+    
+    setEmail(data.user.email.substring(0,5)+'******');
+    console.log(data.user);
+    if(data.user.isVerified) router.push("/");
+    }catch(err){
+      console.error('Error fetching user data:', err);
+    }
+  }
       
 checkVerified();
 
