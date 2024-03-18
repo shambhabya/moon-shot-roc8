@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 let currentOTPIndex: number = 0;
-function page() {
+function Page() {
 
   const router = useRouter();
 
@@ -113,4 +113,4 @@ checkVerified();
   )
 }
 
-export default page
+export default Page
