@@ -3,6 +3,15 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import CategoryItem from "~/components/categoryItem/CategoryItem"; 
 import {useRouter} from "next/navigation";
+import { number } from "zod";
+import { userAgent } from "next/server";
+
+interface User{
+  id: number,
+  username: string,
+  email: string,
+  isVerified: boolean,
+}
 
 function HomePage() {
   
@@ -17,9 +26,9 @@ function HomePage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const resUser = await axios.get("api/users/isverified");
+        const {data}: { data: { user: User } } = await axios.get("api/users/isverified");
 
-        if(!resUser.data.user.isVerified){ 
+        if(!data.user.isVerified){ 
           setVerified(false);
           router.push("/verifyemail"); }
         

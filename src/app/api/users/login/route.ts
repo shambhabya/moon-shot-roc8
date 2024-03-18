@@ -3,18 +3,23 @@ import { PrismaClient } from "@prisma/client";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+interface User {
+    email: string,
+    password: string,
+}
+
 const prisma = new PrismaClient(); 
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   
     try {
-      const reqBody = await request.json();
+      const reqBody: User = await request.json() as User;
       const { email, password } = reqBody;
       
 
       
-      const user = await prisma.user.findUnique({ where: { email } });
-      console.log(user)
+      const user  = await prisma.user.findUnique({ where: { email } });
+      console.log("user-",user)
       if (user === null) {
         return NextResponse.json({ error: "User does not exist" }, { status: 400 });
       }

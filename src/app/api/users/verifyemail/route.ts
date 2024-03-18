@@ -7,9 +7,9 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
   
     try {
-      const reqBody = await req.json();
+      const reqBody : {o_t_p : string} = await req.json();
       
-      const  otp  = reqBody.o_t_p;
+      const  otp : string  = reqBody.o_t_p;
       
       const userId = getDataFromToken(req);
       
