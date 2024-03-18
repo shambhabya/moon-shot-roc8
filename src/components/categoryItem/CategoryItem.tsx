@@ -26,12 +26,12 @@ function CategoryItem({ category }: { category: Category }) {
         setIsSelected(res.data.row !== null);
       } catch (err) {
         console.error("Error fetching selection:", err);
-        
       }
     };
-
+  
     fetchSelection();
   }, [category.id]);
+  
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const newIsSelected = event.target.checked;

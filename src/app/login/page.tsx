@@ -54,7 +54,7 @@ const onLogin = async () => {
          className='h-14 rounded-md bg-black w-5/6 sm:w-4/6 text-white m-5'>LOGIN</button>
         <hr className='w-5/6 sm:w-4/6 border-gray-300' style={{ background: "#C1C1C1", height: "1px" }} />
         <Link href="/signup" className='text-base font-medium m-6'>
-          <span className='text-base font-normal'>Don't have an Account?</span> SIGN UP
+          <span className='text-base font-normal'>Don&apos;t have an Account?</span> SIGN UP
         </Link>
 
       </div>

@@ -15,7 +15,7 @@ interface User {
 export  async function POST(req: NextRequest, res: NextResponse) {
   
     try {
-      const reqBody : User = await req.json();
+      const reqBody : User = await req.json() as User;
       const { username, email, password } = reqBody;
 
       

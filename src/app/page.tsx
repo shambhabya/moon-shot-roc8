@@ -13,11 +13,16 @@ interface User{
   isVerified: boolean,
 }
 
+type Category = {
+  id: number;
+  name: string;
+};
+
 function HomePage() {
   
   const router = useRouter();
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([])
   const [currentPage, setCurrentPage] = useState(1);
   const [categoriesPerPage, setCategoriesPerPage] = useState(6);
   const [verified, setVerified] = useState(true);
@@ -35,7 +40,7 @@ function HomePage() {
 
         const res = await axios.get("api/categories");
         
-        const allCategories = res.data.categories;
+        const allCategories : Category[] = res.data.categories;
         setLoading(false);
         setCategories(allCategories);
 

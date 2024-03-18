@@ -3,7 +3,14 @@ import React, {useState, useRef, useEffect} from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
-let currentOTPIndex: number = 0;
+interface user {
+  id: number,
+  username: string,
+  email: string,
+  isVerified: boolean,
+}
+
+let currentOTPIndex = 0;
 function Page() {
 
   const router = useRouter();
@@ -17,7 +24,7 @@ function Page() {
 
   const handleOnChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = target;
-    const newOTP: string[] = [...otp];
+    const newOTP: string[] = [...(otp as string[])];
     newOTP[currentOTPIndex] = value.substring(value.length - 1);
 
     if (!value) setActiveOTPIndex(currentOTPIndex - 1);
@@ -59,11 +66,11 @@ const onVerify = async ()=>{
     }
 }
 const checkVerified = async ()=>{
-  const res = await axios.get("/api/users/isverified");
+  const {data}: { data: { user: user } } = await axios.get("/api/users/isverified");
   
-  setEmail(res.data.user.email.substring(0,5)+'******');
-  console.log(res.data.user);
-  if(res.data.user.isVerified) router.push("/");
+  setEmail(data.user.email.substring(0,5)+'******');
+  console.log(data.user);
+  if(data.user.isVerified) router.push("/");
 }
 
 useEffect(()=>{
