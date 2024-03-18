@@ -10,13 +10,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
     try {
       const reqBody = await request.json();
       const { email, password } = reqBody;
+      
 
       // Check if user exists
       const user = await prisma.user.findUnique({ where: { email } });
-      if (!user) {
+      console.log(user)
+      if (user === null) {
         return NextResponse.json({ error: "User does not exist" }, { status: 400 });
       }
-
+      
       // Check password
       const validPassword = await bcryptjs.compare(password, user.password);
       if (!validPassword) {
