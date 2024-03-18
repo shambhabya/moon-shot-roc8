@@ -10,8 +10,8 @@
     "isolatedModules": true,
 
     /* Strictness */
-    "strict": false,
-    "noUncheckedIndexedAccess": false,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
     "checkJs": true,
 
     /* Bundled projects */
