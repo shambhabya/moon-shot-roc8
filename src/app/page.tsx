@@ -30,30 +30,29 @@ function HomePage() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      try {
-        const {data}: { data: { user: User } } = await axios.get("api/users/isverified");
+        try {
+            const { data }: { data: { user: User } } = await axios.get("/api/users/isverified");
 
-        if(!data.user.isVerified){ 
-          setVerified(false);
-          router.push("/verifyemail"); }
-        
+            if (!data.user.isVerified) {
+                setVerified(false);
+                router.push("/verifyemail");
+            }
 
-        const res = await axios.get("api/categories");
-        
-        const allCategories  = res.data.categories;
-        console.log(res);
+            const res = await axios.get<{ categories: Category[] }>("/api/categories");
+            const allCategories = res.data.categories;
+            console.log(res);
 
-        setLoading(false);
-        setCategories(allCategories);
-
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-        setCategories([]);
-      }
+            setLoading(false);
+            setCategories(allCategories);
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+            setCategories([]);
+        }
     };
 
-    fetchCategories();
-  }, []);
+    fetchCategories().catch(error => console.error("Unhandled promise rejection:", error));
+}, []);
+
 
   const totalPages = Math.ceil(categories.length / categoriesPerPage);
 

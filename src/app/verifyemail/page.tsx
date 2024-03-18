@@ -24,7 +24,8 @@ function Page() {
 
   const handleOnChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = target;
-    const newOTP: string[] = [...(otp as string[])];
+    const newOTP: string[] = [...otp];
+
     newOTP[currentOTPIndex] = value.substring(value.length - 1);
 
     if (!value) setActiveOTPIndex(currentOTPIndex - 1);
@@ -66,25 +67,21 @@ const onVerify = async ()=>{
     }
 }
 
-
-useEffect(()=>{
-
-  const checkVerified = async ()=>{
-
-    try{
-    const {data}: { data: { user: user } } = await axios.get("/api/users/isverified");
+useEffect(() => {
+  const checkVerified = async () => {
+      try {
+          const { data }: { data: { user: user } } = await axios.get("/api/users/isverified");
+          setEmail(data.user.email.substring(0, 5) + '******');
+          console.log(data.user);
+          if (data.user.isVerified) router.push("/");
+      } catch (err) {
+          console.error('Error fetching user data:', err);
+      }
+  };
     
-    setEmail(data.user.email.substring(0,5)+'******');
-    console.log(data.user);
-    if(data.user.isVerified) router.push("/");
-    }catch(err){
-      console.error('Error fetching user data:', err);
-    }
-  }
-      
-checkVerified();
+  checkVerified().catch(err => console.error('Unhandled promise rejection:', err));
+}, []);
 
-},[])
   
 
   return (
