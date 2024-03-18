@@ -6,16 +6,16 @@ const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest, response: NextResponse) {
   try {
-    const userId = await getDataFromToken(request); 
+    const userId = getDataFromToken(request); 
 
     const reqBody = await request.json();
-    const { id }: { id: number } = reqBody; 
+    const { id }: { id: number  } = reqBody; 
 
     const existingCategory = await prisma.categoriesOnUsers.findUnique({
       where: { userId_categoryId: { userId, categoryId: id } },
     });
 
-    let row: { categoryId: number, userId: number};
+    let row: { categoryId: number , userId: number};
 
     if (existingCategory === null) {
       row = await prisma.categoriesOnUsers.create({
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       Row: row,
     });
   } catch (error) {
-    console.error("Error handling category association:", error.message);
+    console.error("Error handling category association:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

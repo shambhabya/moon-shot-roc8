@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 export async function GET(request: NextRequest, response: NextResponse) {
   try {
     
-    const userId = await getDataFromToken(request);
+    const userId = getDataFromToken(request);
 
     const categories= await prisma.category.findMany();
     
@@ -19,6 +19,6 @@ export async function GET(request: NextRequest, response: NextResponse) {
       userId
     });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return NextResponse.json({ error}, { status: 400 });
   } 
 }

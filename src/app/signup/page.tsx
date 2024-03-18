@@ -25,7 +25,7 @@ function Page() {
           router.push("/verifyemail");
           
       } catch (error) {
-          console.log("Signup faileddd", error.message);
+          console.log("Signup faileddd", error);
           
           
       }finally {

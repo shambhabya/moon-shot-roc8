@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   try {
-    const userId = await getDataFromToken(request);
+    const userId = getDataFromToken(request);
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -23,6 +23,6 @@ export async function GET(request: NextRequest) {
       data: user,
     });
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return NextResponse.json({ error: error }, { status: 400 });
   } 
 }

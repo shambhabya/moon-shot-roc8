@@ -11,13 +11,8 @@ export async function POST(req: NextRequest) {
       
       const  otp  = reqBody.o_t_p;
       
+      const userId = getDataFromToken(req);
       
-
-      const userId = await getDataFromToken(req);
-      
-
-
-      // 2. Find user by ID
       const user = await prisma.user.findUnique({
         where: { id: userId },
       });
@@ -28,7 +23,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Invalid user' }, { status: 400 });
       }
 
-      // 3. Verify OTP
       if (!user.verifyOtp && !user.isVerified) {
         
         return NextResponse.json({ error: 'verify otp is null' }, { status: 500 });
@@ -56,7 +50,7 @@ export async function POST(req: NextRequest) {
       
     } catch (error) {
       console.error(error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return NextResponse.json({ error: error}, { status: 500 });
     }
   }
 

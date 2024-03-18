@@ -9,7 +9,7 @@ export async function POST(request: NextRequest,) {
   try {
     
     
-    const userId = await getDataFromToken(request);
+    const userId = getDataFromToken(request);
 
     const reqBody = await request.json();
     const { id  }  = reqBody;
@@ -25,6 +25,6 @@ export async function POST(request: NextRequest,) {
       row
     });
   } catch (error ){
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return NextResponse.json({ error }, { status: 400 });
   } 
 }
