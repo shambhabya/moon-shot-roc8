@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     
     const userId = getDataFromToken(request);
 
-    const reqBody: Category = await request.json();
+    const reqBody: Category = await request.json() as Category;
     const { id  }  = reqBody;
 
     const row = await prisma.categoriesOnUsers.findUnique({
