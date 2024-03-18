@@ -13,7 +13,7 @@ interface User{
   isVerified: boolean,
 }
 
-type Category = {
+interface Category  {
   id: number;
   name: string;
 };
@@ -40,7 +40,9 @@ function HomePage() {
 
         const res = await axios.get("api/categories");
         
-        const allCategories : Category[] = res.data.categories;
+        const allCategories  = res.data.categories;
+        console.log(res);
+
         setLoading(false);
         setCategories(allCategories);
 

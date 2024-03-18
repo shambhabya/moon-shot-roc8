@@ -66,11 +66,16 @@ const onVerify = async ()=>{
     }
 }
 const checkVerified = async ()=>{
+
+  try{
   const {data}: { data: { user: user } } = await axios.get("/api/users/isverified");
   
   setEmail(data.user.email.substring(0,5)+'******');
   console.log(data.user);
   if(data.user.isVerified) router.push("/");
+  }catch(err){
+    console.error('Error fetching user data:', err);
+  }
 }
 
 useEffect(()=>{
